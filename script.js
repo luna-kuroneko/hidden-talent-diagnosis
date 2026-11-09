@@ -294,21 +294,14 @@ function showResult() {
 
 const image = canvas.toDataURL("image/png");
 
-const newWindow = window.open("", "_blank");
+const link = document.createElement("a");
+link.href = image;
+link.download = "隠れた才能認定証.png";
 
-if (!newWindow) {
-  throw new Error("画像表示用のウィンドウを開けませんでした");
-}
+document.body.appendChild(link);
+link.click();
+link.remove();
 
-newWindow.document.title = "隠れた才能認定証";
-newWindow.document.body.style.margin = "0";
-
-const img = newWindow.document.createElement("img");
-img.src = image;
-img.style.width = "100%";
-img.style.height = "auto";
-
-newWindow.document.body.appendChild(img);
     } catch (error) {
       console.error(error);
       alert("画像の保存に失敗しました。もう一度試してね。");
