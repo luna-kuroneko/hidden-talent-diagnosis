@@ -106,48 +106,56 @@ const questions = [
 const results = [
   {
     animal: "🐈‍⬛",
+    image: "assets/images/black_cat.png",
     name: "黒猫王子",
     talent: "世界を甘やかす天才",
     description: "あなたは人の心をほぐす天才！ただし、自分を甘やかすのも大得意🤣"
   },
   {
     animal: "🦌",
-    name: "陽気なトナカイ",
+    image: "assets/images/reindeer.png",
+    name: "陽気なトナカイ",  
     talent: "人生楽しんだもん勝ち王",
     description: "どんな状況でも楽しみを発見！ただし、調子に乗ると止まらない🤣"
   },
   {
     animal: "🐰",
+    image: "assets/images/rabbit.png",
     name: "魔法使いうさぎ",
     talent: "奇跡を呼ぶ天然天才",
     description: "本人は普通のつもりなのに、なぜか周囲を驚かせる不思議な存在✨"
   },
   {
     animal: "🐹",
+    image: "assets/images/hamster.png",
     name: "幸運ハムスター",
     talent: "おいしいところ総取り王",
     description: "チャンスを見つける嗅覚が抜群！ただし、お菓子の誘惑には勝てない🤣"
   },
   {
     animal: "🦨",
+    image: "assets/images/skunk.png",
     name: "爆笑スカンク",
     talent: "笑いの天才",
     description: "あなたの笑顔は周囲を幸せにする特別な才能！ただし、笑いすぎておならが出ても責任は負いません🤣"
   },
   {
     animal: "🦥",
+    image: "assets/images/sloth.png",
     name: "ぐうたらナマケモノ",
     talent: "休む天才",
     description: "何もしない時間を楽しめる究極の癒し系！ただし、やる気が出るまで平均3営業日かかります🤣"
   },
   {
     animal: "🐿️",
+    image: "assets/images/squirrel.png",
     name: "欲張りリス",
     talent: "幸せを集める天才",
     description: "小さな幸せを見つけるのが得意！ただし、何を集めていたのか途中で忘れます🤣"
   },
   {
     animal: "🦙",
+    image: "assets/images/alpaca.png",
     name: "不思議アルパカ",
     talent: "空気を変える天才",
     description: "あなたがいるだけで場の雰囲気が変わる！ただし、本人は空気を読まずに草を食べています🤣"
@@ -230,9 +238,10 @@ function showResult() {
   heading.className = "certificate-heading";
   heading.textContent = "🔮 隠れた才能認定証 🔮";
 
-  const animal = document.createElement("div");
+  const animal = document.createElement("img");
   animal.className = "certificate-animal";
-  animal.textContent = result.animal;
+  animal.src = result.image;
+  animal.alt = result.name;
 
   const name = document.createElement("h2");
   name.className = "certificate-name";
@@ -283,14 +292,23 @@ function showResult() {
         scale: 2
       });
 
-      const image = canvas.toDataURL("image/png");
+const image = canvas.toDataURL("image/png");
 
-      const link = document.createElement("a");
-      link.href = image;
-      link.download = "隠れた才能認定証.png";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+const newWindow = window.open("", "_blank");
+
+if (!newWindow) {
+  throw new Error("画像表示用のウィンドウを開けませんでした");
+}
+
+newWindow.document.title = "隠れた才能認定証";
+newWindow.document.body.style.margin = "0";
+
+const img = newWindow.document.createElement("img");
+img.src = image;
+img.style.width = "100%";
+img.style.height = "auto";
+
+newWindow.document.body.appendChild(img);
     } catch (error) {
       console.error(error);
       alert("画像の保存に失敗しました。もう一度試してね。");

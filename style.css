@@ -149,3 +149,35 @@ main {
 .retry-button:hover {
   background: #a17dc2;
 }
+
+/* スマホ用・認定証の文字調整 */
+@media (max-width: 480px) {
+  .certificate {
+    padding: 25px 12px;
+  }
+
+  .certificate-heading {
+    font-size: clamp(16px, 5vw, 22px);
+    white-space: nowrap;
+  }
+
+  .certificate-name {
+    font-size: 22px;
+  }
+
+  .certificate-talent {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .certificate-description {
+    font-size: 15px;
+  }
+}
+.certificate-animal {
+  display: block;
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  margin: 15px auto 20px;
+}
