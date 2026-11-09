@@ -311,12 +311,31 @@ link.remove();
     }
   });
 
+const xButton = document.createElement("button");
+xButton.textContent = "𝕏 この結果をXに投稿する";
+xButton.className = "x-button";
+
+xButton.addEventListener("click", () => {
+  const message =
+    `🔮 私の隠れた才能は「${result.talent}」でした！🤣\n` +
+    `診断キャラは「${result.name}」✨\n\n` +
+    `あなたの隠れた才能は何かな？🐈‍⬛\n` +
+    `#隠れた才能診断\n` +
+    `https://luna-kuroneko.github.io/hidden-talent-diagnosis/`;
+
+  const xUrl =
+    "https://twitter.com/intent/tweet?text=" +
+    encodeURIComponent(message);
+
+  window.open(xUrl, "_blank");
+});
+
   const retry = document.createElement("button");
   retry.textContent = "もう一度診断する🤣";
   retry.className = "retry-button";
   retry.addEventListener("click", startQuiz);
 
-  main.append(certificate, saveButton, retry);
+  main.append(certificate, saveButton, xButton, retry);
 
 }
 
